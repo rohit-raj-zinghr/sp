@@ -1,0 +1,56 @@
+CREATE OR ALTER PROCEDURE sp_ValidateEmployeePunchIn_Shift
+    @EmpCode VARCHAR(100),
+    @PunchInTime DATETIME
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ShiftDetails NVARCHAR(MAX);
+    DECLARE @IsValid BIT = 0;
+
+    -- Fetch the ShiftDetails JSON for the employee
+    SELECT @ShiftDetails = ShiftDetails
+    FROM dbo.Flattable
+    WHERE EmpCode = @EmpCode;
+
+    IF @ShiftDetails IS NOT NULL
+    BEGIN
+        -- Parse the JSON to check if the punch-in time meets all criteria, including being less than InTime
+        SELECT @IsValid = 
+            CASE 
+                WHEN EXISTS (
+                    SELECT 1
+                    FROM OPENJSON(@ShiftDetails)
+                    WITH (
+                        ShiftID VARCHAR(100),
+                        ShiftStart DATETIME,
+                        ShiftEnd DATETIME,
+                        InTime TIME,
+                        OutTime TIME,
+                        FromMin INT,
+                        ToMin INT
+                    ) AS shifts
+                    WHERE 
+                        @PunchInTime BETWEEN ShiftStart AND ShiftEnd
+                        AND CAST(@PunchInTime AS TIME) < InTime  -- Punch-in must be before InTime
+                        AND DATEPART(MINUTE, @PunchInTime) BETWEEN FromMin AND ToMin
+                ) THEN 1
+                ELSE 0
+            END;
+    END
+    ELSE
+    BEGIN
+        SET @IsValid = 0; -- No shift details found for the employee
+    END
+
+    SELECT @IsValid AS IsValidShift;
+END;
+GO
+
+EXEC sp_ValidateEmployeePunchIn_Shift 
+    @EmpCode = '00000003', 
+    @PunchInTime = '2022-12-01 8:59:59';
+
+
+
+
