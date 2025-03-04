@@ -1,0 +1,52 @@
+CREATE OR ALTER PROCEDURE sp_ValidateEmployeePunchOut_Shift
+    @EmpCode VARCHAR(100),
+    @PunchOutTime DATETIME
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ShiftDetails NVARCHAR(MAX);
+    DECLARE @IsValid BIT = 0;
+
+    -- Fetch the ShiftDetails JSON for the employee
+    SELECT @ShiftDetails = ShiftDetails
+    FROM dbo.Flattable
+    WHERE EmpCode = @EmpCode;
+
+    IF @ShiftDetails IS NOT NULL
+    BEGIN
+        -- Parse the JSON to check if the punch-out time meets all criteria, including being greater than OutTime
+        SELECT @IsValid = 
+            CASE 
+                WHEN EXISTS (
+                    SELECT 1
+                    FROM OPENJSON(@ShiftDetails)
+                    WITH (
+                        ShiftID VARCHAR(100),
+                        ShiftStart DATETIME,
+                        ShiftEnd DATETIME,
+                        InTime TIME,
+                        OutTime TIME,
+                        FromMin INT,
+                        ToMin INT
+                    ) AS shifts
+                    WHERE 
+                        @PunchOutTime BETWEEN ShiftStart AND ShiftEnd
+                        AND CAST(@PunchOutTime AS TIME) > OutTime  -- Punch-out must be after OutTime
+                        AND DATEPART(MINUTE, @PunchOutTime) BETWEEN FromMin AND ToMin
+                ) THEN 1
+                ELSE 0
+            END;
+    END
+    ELSE
+    BEGIN
+        SET @IsValid = 0; -- No shift details found for the employee
+    END
+
+    SELECT @IsValid AS IsValidShift;
+END;
+GO
+
+EXEC sp_ValidateEmployeePunchOut_Shift 
+    @EmpCode = '00000003', 
+    @PunchOutTime = '2022-12-01 17:41:00';
