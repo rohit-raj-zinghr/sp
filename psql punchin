@@ -1,0 +1,67 @@
+CREATE OR REPLACE FUNCTION public.sp_ValidateEmployeePunchIn_Shift(
+    p_EmpCode VARCHAR(100),
+    p_PunchInTime TIMESTAMP
+)
+RETURNS TABLE (
+    IsValidShift BOOLEAN,
+    Message VARCHAR(100)
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_ShiftDetails JSON;
+    v_IsValid BOOLEAN := FALSE;
+    v_Message VARCHAR(100) := 'Invalid Punch-in';
+    v_InTime TIME;
+    v_MinutesEarly INTEGER;
+    v_ShiftRecord RECORD;
+BEGIN
+    -- Fetch the ShiftDetails JSON for the employee
+    SELECT ShiftDetails INTO v_ShiftDetails
+    FROM public."flattable"
+    WHERE EmpCode = p_EmpCode;
+    
+    IF v_ShiftDetails IS NOT NULL THEN
+        -- Check if any shift record meets the criteria
+        FOR v_ShiftRecord IN
+            SELECT 
+                (shift_data->>'ShiftID')::VARCHAR AS ShiftID,
+                (shift_data->>'ShiftStart')::TIMESTAMP AS ShiftStart,
+                (shift_data->>'ShiftEnd')::TIMESTAMP AS ShiftEnd,
+                -- Handle time format correctly by converting to timestamp first, then extracting time
+                ((shift_data->>'InTime')::TIMESTAMP)::TIME AS InTime,
+                ((shift_data->>'OutTime')::TIMESTAMP)::TIME AS OutTime,
+                (shift_data->>'FromMin')::INTEGER AS FromMin,
+                (shift_data->>'ToMin')::INTEGER AS ToMin
+            FROM json_array_elements(v_ShiftDetails) AS shift_data
+        LOOP
+            IF (
+                p_PunchInTime >= v_ShiftRecord.ShiftStart
+                AND p_PunchInTime < (v_ShiftRecord.ShiftEnd + INTERVAL '1 day')
+                AND p_PunchInTime::TIME < v_ShiftRecord.InTime
+                AND EXTRACT(MINUTE FROM p_PunchInTime) BETWEEN v_ShiftRecord.FromMin AND v_ShiftRecord.ToMin
+            ) THEN
+                v_IsValid := TRUE;
+                v_InTime := v_ShiftRecord.InTime;
+                
+                -- Calculate minutes early
+                v_MinutesEarly := EXTRACT(EPOCH FROM (v_InTime - p_PunchInTime::TIME))/60;
+                v_Message := 'Early Punch-in by ' || v_MinutesEarly::VARCHAR || ' minutes';
+                
+                EXIT; -- Found a valid shift, exit the loop
+            END IF;
+        END LOOP;
+    ELSE
+        v_IsValid := FALSE;
+        v_Message := 'No shift details found for the employee';
+    END IF;
+    
+    -- Return the result
+    RETURN QUERY SELECT v_IsValid, v_Message;
+END;
+$$;
+
+SELECT * FROM public.sp_ValidateEmployeePunchIn_Shift(
+    p_EmpCode := '00000003', 
+    p_PunchInTime := '2022-12-01 08:58:51'
+);
