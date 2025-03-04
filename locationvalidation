@@ -1,0 +1,79 @@
+CREATE OR ALTER PROCEDURE sp_ValidateEmployeePunchIn_Location
+    @EmpCode VARCHAR(100),
+    @PunchInTime DATETIME,
+    @Latitude DECIMAL(10,7),  -- Latitude as decimal (e.g., 28.4594965)
+    @Longitude DECIMAL(10,7)  -- Longitude as decimal (e.g., 77.0266383)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @LocationDetails NVARCHAR(MAX);
+    DECLARE @IsValid BIT = 0;
+
+    -- Fetch the LocationDetails JSON for the employee
+    SELECT @LocationDetails = LocationDetails
+    FROM dbo.Flattable
+    WHERE EmpCode = @EmpCode;
+
+    IF @LocationDetails IS NOT NULL
+    BEGIN
+        -- Parse the JSON to check if the latitude/longitude falls within any allowed location's range
+        SELECT @IsValid = 
+            CASE 
+                WHEN EXISTS (
+                    SELECT 1
+                    FROM OPENJSON(@LocationDetails)
+                    WITH (
+                        LocationID INT,
+                        georange VARCHAR(100),  -- Range in kilometers or other units
+                        rangeinkm BIT,          -- Whether range is in kilometers (1) or not (0)
+                        Latitude DECIMAL(10,7),
+                        Longitude DECIMAL(10,7),
+                        FromDate DATETIME,
+                        ToDate DATETIME
+                    ) AS locations
+                    WHERE 
+                        @PunchInTime BETWEEN FromDate AND ToDate
+                        AND dbo.fn_CalculateDistance(
+                            @Latitude, @Longitude, 
+                            locations.Latitude, locations.Longitude
+                        ) <= CAST(locations.georange AS DECIMAL(10,2)) * 
+                            CASE WHEN locations.rangeinkm = 1 THEN 1000.0 ELSE 1.0 END  -- Convert km to meters if needed
+                ) THEN 1
+                ELSE 0
+            END;
+    END
+    ELSE
+    BEGIN
+        SET @IsValid = 0; -- No location details found for the employee
+    END
+
+    SELECT @IsValid AS IsValidLocation;
+END;
+GO
+
+
+CREATE OR ALTER FUNCTION dbo.fn_CalculateDistance(
+    @Lat1 DECIMAL(10,7), @Lon1 DECIMAL(10,7),
+    @Lat2 DECIMAL(10,7), @Lon2 DECIMAL(10,7)
+) RETURNS DECIMAL(10,2)
+AS
+BEGIN
+    DECLARE @R DECIMAL(10,2) = 6371000; -- Earth's radius in meters
+    DECLARE @dLat DECIMAL(10,7) = RADIANS(@Lat2 - @Lat1);
+    DECLARE @dLon DECIMAL(10,7) = RADIANS(@Lon2 - @Lon1);
+    DECLARE @a DECIMAL(10,7) = SIN(@dLat/2) * SIN(@dLat/2) + 
+                              COS(RADIANS(@Lat1)) * COS(RADIANS(@Lat2)) * 
+                              SIN(@dLon/2) * SIN(@dLon/2);
+    DECLARE @c DECIMAL(10,7) = 2 * ATN2(SQRT(@a), SQRT(1-@a));  -- Corrected to ATN2
+    DECLARE @distance DECIMAL(10,2) = @R * @c;
+    RETURN @distance;
+END;
+GO
+
+
+EXEC sp_ValidateEmployeePunchIn_Location 
+    @EmpCode = '00000003', 
+    @PunchInTime = '2022-01-23 08:00:00', 
+    @Latitude =28.4594965000, 
+    @Longitude =77.0266383000;
