@@ -316,3 +316,28 @@ SELECT
     @IsValidLocation AS IsValidLocation, 
     @IsValidIP AS IsValidIP,
     @Message AS Message;
+
+
+
+
+DECLARE @IsValidPunchIn BIT, @IsValidPunchOut BIT, @IsValidLocation BIT, @IsValidIP BIT, @Message VARCHAR(500);
+EXEC dbo.ValidateEmployeePunch
+    @EmpCode = '001164',
+    @PunchDateTime = '2019-12-01 20:00:00',
+    @PunchIn = 0,
+    @PunchOut = 1,
+    @Latitude = 19.1796990,
+    @Longitude = 72.8440580,
+    @ClientIPAddress = '111.233.34.79', -- Example IP to validate
+    @IsValidPunchIn = @IsValidPunchIn OUTPUT,
+    @IsValidPunchOut = @IsValidPunchOut OUTPUT,
+    @IsValidLocation = @IsValidLocation OUTPUT,
+    @IsValidIP = @IsValidIP OUTPUT,
+    @Message = @Message OUTPUT;
+ 
+SELECT 
+    @IsValidPunchIn AS IsValidPunchIn, 
+    @IsValidPunchOut AS IsValidPunchOut, 
+    @IsValidLocation AS IsValidLocation, 
+    @IsValidIP AS IsValidIP,
+    @Message AS Message;
