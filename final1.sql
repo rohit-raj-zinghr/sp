@@ -1,4 +1,4 @@
-ALTER PROCEDURE dbo.ValidateEmployeePunch
+create or alter PROCEDURE dbo.ValidateEmployeePunch
     @EmpCode VARCHAR(100),
     @PunchDateTime DATETIME,           -- Single datetime for punch event
     @PunchIn BIT,                      -- 1 = Validate Punch-In, 0 = Ignore
@@ -256,7 +256,7 @@ EXEC dbo.ValidateEmployeePunch
     @PunchOut = 0,
     @Latitude = 28.4594965000,
     @Longitude = 77.0266383000,
-    @ClientIPAddress = '192.168.1.50', -- Example IP to validate
+    @ClientIPAddress = '111.111.111.111', -- Example IP to validate
     @IsValidPunchIn = @IsValidPunchIn OUTPUT,
     @IsValidPunchOut = @IsValidPunchOut OUTPUT,
     @IsValidLocation = @IsValidLocation OUTPUT,
