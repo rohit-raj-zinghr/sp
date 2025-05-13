@@ -66,69 +66,67 @@ This guide outlines the sequential process for executing **BackDated Attendance 
 
 
 ## 🌟 Contributors
-
-<table>
-  <tr>
-    <td align="center">
+<div style="text-align: center;">
+  <h2>🌟 Contributors</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-around; width: 100%;">
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/prasad-rajappan-a002a73/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/C4E03AQEQl64iTddLkw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516298618284?e=1751500800&v=beta&t=QZ-WYMxK5vPV-_iFCikorpW6VSIWnhWAz7LlXiX5LXE" width="80px" style="border-radius:50%;" alt="Contributor 1"/>
+        <img src="https://media.licdn.com/dms/image/v2/C4E03AQEQl64iTddLkw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516298618284?e=1751500800&v=beta&t=QZ-WYMxK5vPV-_iFCikorpW6VSIWnhWAz7LlXiX5LXE" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 1"/>
         <br/>
         <sub><b>Prasad Rajappan</b></sub>
       </a>
-    </td>
-    <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/nikhil004/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGys4LpBZOvng/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1726168691780?e=2147483647&v=beta&t=7_LfxXThuPlIpSHmiPCQe1bwPCkJW52oAVhJOn5FL0E" width="80px" style="border-radius:50%;" alt="Contributor 2"/>
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGys4LpBZOvng/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1726168691780?e=2147483647&v=beta&t=7_LfxXThuPlIpSHmiPCQe1bwPCkJW52oAVhJOn5FL0E" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 2"/>
         <br/>
         <sub><b>Nikhil Mishra</b></sub>
       </a>
-    </td>
-        <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/hemant-meena-208b2556/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQE7YLjE5a77dg/profile-displayphoto-shrink_400_400/B4DZXlkzApHsAg-/0/1743313384104?e=1751500800&v=beta&t=fMEISdFGYxEw5J4Wnki5WaBSIIsz9yD4aHsmx0F3Bq8" width="80px" style="border-radius:50%;" alt="Contributor 4"/>
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQE7YLjE5a77dg/profile-displayphoto-shrink_400_400/B4DZXlkzApHsAg-/0/1743313384104?e=1751500800&v=beta&t=fMEISdFGYxEw5J4Wnki5WaBSIIsz9yD4aHsmx0F3Bq8" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 3"/>
         <br/>
         <sub><b>Hemant Meena</b></sub>
       </a>
-    </td>
-    <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/mihir-mistry-93068b223/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEpLW8pg6DVgw/profile-displayphoto-shrink_200_200/B4DZRrVZvRHcAg-/0/1736967562482?e=2147483647&v=beta&t=HrPYZoofkqgqDIfavB3QjqSbbWQPP4aza3LomSTXoGk" width="80px" style="border-radius:50%;" alt="Contributor 3"/>
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEpLW8pg6DVgw/profile-displayphoto-shrink_200_200/B4DZRrVZvRHcAg-/0/1736967562482?e=2147483647&v=beta&t=HrPYZoofkqgqDIfavB3QjqSbbWQPP4aza3LomSTXoGk" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 4"/>
         <br/>
         <sub><b>Mihir Mistry</b></sub>
       </a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/amol-dingankar-315459121/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQHvWF1_C18zxw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1670330113667?e=1751500800&v=beta&t=5OHQubiCZG5QdtQSh6AiQinKHsmllf0XGrw2baotTsk" width="80px" style="border-radius:50%;" alt="Contributor 5"/>
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQHvWF1_C18zxw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1670330113667?e=1751500800&v=beta&t=5OHQubiCZG5QdtQSh6AiQinKHsmllf0XGrw2baotTsk" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 5"/>
         <br/>
         <sub><b>Amol Dingankar</b></sub>
       </a>
-    </td>
-        <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/omveer-singh-82102a29/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D5603AQEAaLfXazpQeA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714208348267?e=1751500800&v=beta&t=l5QotBO0eGPa5Nman6hlqQu6A5xPoVjMbPn8Ua6Ac84" width="80px" style="border-radius:50%;" alt="Contributor 7"/>
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQEAaLfXazpQeA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714208348267?e=1751500800&v=beta&t=l5QotBO0eGPa5Nman6hlqQu6A5xPoVjMbPn8Ua6Ac84" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 6"/>
         <br/>
         <sub><b>Omveer Singh</b></sub>
       </a>
-    </td>
-    <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/vijay-boura-b1197517a/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D5603AQFFl0UQvFIiuw/profile-displayphoto-shrink_400_400/B56ZaQunylHsAg-/0/1746184866189?e=1751500800&v=beta&t=-oPo7evoLYQwDDSuPYLHlfmqTAnQVLJu5R1B8nRLgJo" width="80px" style="border-radius:50%;" alt="Contributor 6"/>
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFFl0UQvFIiuw/profile-displayphoto-shrink_400_400/B56ZaQunylHsAg-/0/1746184866189?e=1751500800&v=beta&t=-oPo7evoLYQwDDSuPYLHlfmqTAnQVLJu5R1B8nRLgJo" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 7"/>
         <br/>
         <sub><b>Vijay Boura</b></sub>
       </a>
-    </td>
-    <td align="center">
+    </div>
+    <div style="flex: 1 1 20%; text-align: center; margin: 10px 0;">
       <a href="https://www.linkedin.com/in/imrohi8/" target="_blank">
-        <img src="https://media.licdn.com/dms/image/v2/D5603AQG5hOhdd_j3xg/profile-displayphoto-shrink_400_400/B56ZUkf5m7HQAg-/0/1740074097527?e=1751500800&v=beta&t=iqR0a0HtngiLptIxvEXP_RgpWKXA9ve43hkXS1_Bw8g" width="80px" style="border-radius:50%;" alt="Contributor 8"/>
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQG5hOhdd_j3xg/profile-displayphoto-shrink_400_400/B56ZUkf5m7HQAg-/0/1740074097527?e=1751500800&v=beta&t=iqR0a0HtngiLptIxvEXP_RgpWKXA9ve43hkXS1_Bw8g" style="max-width: 100%; height: auto; border-radius: 50%;" alt="Contributor 8"/>
         <br/>
         <sub><b>Rohit Raj</b></sub>
       </a>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
 
 
 
