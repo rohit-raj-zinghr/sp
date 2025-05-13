@@ -43,6 +43,16 @@ iv) Update Records: Maintain up-to-date attendance data in the Rostering table, 
 
 
 
+# 🕒 BackDated OT Creation - TNA System
+
+This guide outlines the sequential process for executing **BackDated OT creation** in the **Time and Attendance (TNA)** system. It includes stored procedure calls that handle shift data preparation, rule application, and final attendance processing for historical (backdated) dates.
+
+## 📌 Job Reference  
+**Job Name:** `Attendance_job_for_cowayqa5`  
+**Objective:** To process and finalize backdated attendance records, ensuring rule compliance and data readiness for reporting.
+
+
+
 ## 🌟 Contributors
 
 <table>
