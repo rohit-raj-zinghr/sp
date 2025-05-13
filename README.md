@@ -51,6 +51,17 @@ This guide outlines the sequential process for executing **BackDated Attendance 
 **Job Name:** `Attendance_job_for_cowayqa5`  
 **Objective:** To process and finalize backdated attendance records, ensuring rule compliance and data readiness for reporting.
 ### ✅ Step 1:[Generate the FlatTable required for backdated data processing.](https://github.com/zinghrcore/z2-tna-db/blob/master/1.setempshiftjsondata.sql)
+### ✅ Step 2:[Create FILO (First In Last Out) attendance records from the JSON shift data](https://github.com/zinghrcore/z2-tna-db/blob/master/2.FiloCreationWithJSON_Z2.sql)
+### ✅ Step 3:[Apply Working Hours Rule by creating sp [TNA].[AttendanceRule_WorkingHrs]](https://github.com/zinghrcore/z2-tna-db/blob/master/3.AttendanceRule_WorkingHrs.sql)
+### ✅ Step 4:[Apply Late Coming Rule using sp ATTENDANCERULE_LATECOMING](https://github.com/zinghrcore/z2-tna-db/blob/master/4.ATTENDANCERULE_LATECOMING.sql)
+### ✅ Step 5:[Apply Late Coming Rule using sp ATTENDANCERULE_EARLYGOING](https://github.com/zinghrcore/z2-tna-db/blob/master/5.ATTENDANCERULE_EARLYGOING.sql)
+### ✅ Step 6:[Apply Flexitime Rule using sp ATTENDANCERULE_FLEXITIME](https://github.com/zinghrcore/z2-tna-db/blob/master/6.ATTENDANCERULE_FLEXITIME.sql)
+### ✅ Step 7:[Process BackDated Extra Time using sp GenExtraTimeZ2_AttProcess](https://github.com/zinghrcore/z2-tna-db/blob/master/7.GenExtraTimeZ2_AttProcess.sql)
+### ✅ Step 8:[Apply Compensatory Off Rule usinf sp ATTENDANCERULE_COMPOFF](https://github.com/zinghrcore/z2-tna-db/blob/master/8.ATTENDANCERULE_COMPOFF.sql)
+### ✅ Step 9:[Handle Attendance Exceptions using sp ATTENDANCERULE_EXCEPTIONS](https://github.com/zinghrcore/z2-tna-db/blob/master/9.ATTENDANCERULE_EXCEPTIONS.sql)
+### ✅ Step 10:[ Display Attendance Results using sp AttendanceRule_DisplayResult](https://github.com/zinghrcore/z2-tna-db/blob/master/10.AttendanceRule_DisplayResult.sql)
+### ✅ Step 11:[Transfer Data for Reports using sp DataTransferForReports](https://github.com/zinghrcore/z2-tna-db/blob/master/11.DataTransferForReports.sql)
+
 
 
 
